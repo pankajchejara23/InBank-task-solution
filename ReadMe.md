@@ -19,32 +19,47 @@ Be informed that:
 ### Solution
 
 ```sql
-SELECT 
-  transaction_date, 
-  round(sum(amount_eur),2) 
+SELECT
+  transaction_date,
+  round(sum(amount_eur),2)
 FROM
   (
     SELECT
-      transaction_date, 
+      transaction_date,
       if(currency=
-        ( 
+        (
         SELECT                
-          currency_id 
-        FROM 
-          currencies 
-        WHERE 
+          currency_id
+        FROM
+          currencies
+        WHERE
           currency_code='EUR'
-        ),amount,amount*exchange_rate_to_eur) as amount_eur 
-    FROM 
-      payments p 
-    LEFT JOIN 
-      currency_rates c on p.currency=c.currency_id and p.transaction_date = c.exchange_date 
-    WHERE 
-    user_id_sender not in (select user_id from blacklist) 
-    AND 
-    currency not in (select currency_id from currencies where end_date is not null)
-    ) as c 
-GROUP BY 
+        ),amount,amount*exchange_rate_to_eur) AS amount_eur
+    FROM
+      payments p
+    LEFT JOIN
+      currency_rates c ON p.currency=c.currency_id
+      AND
+      p.transaction_date = c.exchange_date
+    WHERE
+    user_id_sender not in
+      (
+        SELECT
+          user_id
+        FROM
+          blacklist
+      )
+    AND
+    currency not in
+      (
+        SELECT
+          currency_id
+        FROM
+          currencies
+        WHERE
+          end_date is not null)
+    ) AS c
+GROUP BY
   transaction_date;
 
 ```

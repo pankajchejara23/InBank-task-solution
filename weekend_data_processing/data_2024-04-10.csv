@@ -1,0 +1,6 @@
+company,metric_id,metric_desc,metric_value,combined_date
+i-bank,1,active contracts,22000,2024-04-10
+i-bank,2,active customers,100500,2024-04-10
+i-bank,3,employees count,201,2024-04-10
+i-bank,4,active partners,2005,2024-04-10
+i-bank,5,unique products,10,2024-04-10

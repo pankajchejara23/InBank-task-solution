@@ -1,0 +1,6 @@
+﻿company;metric_id;metric_desc;metric_value;metric_date
+i-bank;1;active contracts;10000;2023-02-11
+i-bank;2;active customers;50000;2023-02-11
+i-bank;3;employees count;100;2023-02-11
+i-bank;4;active partners;1000;2023-02-11
+i-bank;5;unique products;5;2023-02-11
